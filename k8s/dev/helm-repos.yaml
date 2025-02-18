@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  namespace: flux-system
+  name: spartan
+spec:
+  interval: 10m
+  url: https://spartan-stratos.github.io/helm-charts

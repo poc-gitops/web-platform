@@ -1,16 +1,34 @@
-replicaCount: 1
-
-image:
-  repository: nginx
-  tag: 1.19.6
-
-containerPort: 8080
-
-ingress:
-  enabled: true
-  className: "cloduflare-tunnel"
-  hosts:
-    - host: web-platform-dev.mhcp001.uk
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: web-platform
+  namespace: flux-system
+spec:
+  interval: 2m0s
+  releaseName: web-platform
+  targetNamespace: web-platform
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: spartan
+      sourceRef:
+        kind: HelmRepository
+        namespace: flux-system
+        name: spartan
+      version: "0.1.8"
+  values:
+    replicaCount: 1
+    image:
+      repository: ghcr.io/poc-gitops/web-platform/web-platform
+      tag: 1.19.6
+    containerPort: 8080
+    ingress:
+      enabled: true
+      className: "cloduflare-tunnel"
+      hosts:
+        - host: web-platform-dev.mhcp001.uk
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
