@@ -1,0 +1,16 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: 1.19.6
+
+containerPort: 8080
+
+ingress:
+  enabled: true
+  className: "cloduflare-tunnel"
+  hosts:
+    - host: web-platform-dev.mhcp001.uk
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
