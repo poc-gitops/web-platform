@@ -21,8 +21,8 @@ spec:
   values:
     replicaCount: 1
     image:
-      repository: ghcr.io/poc-gitops/web-platform/web-platform
-      tag: m-ec700a7
+      repository: ghcr.io/poc-gitops/web-platform/web-platform # {"$imagepolicy": "flux-system:web-platform:name"}
+      tag: m-ec700a7 # {"$imagepolicy": "flux-system:web-platform:tag"}
     containerPort: 80
     ingress:
       enabled: true
