@@ -23,7 +23,7 @@ spec:
     image:
       repository: ghcr.io/poc-gitops/web-platform/web-platform
       tag: 8ebc536
-    containerPort: 8080
+    containerPort: 80
     ingress:
       enabled: true
       className: "cloduflare-tunnel"
