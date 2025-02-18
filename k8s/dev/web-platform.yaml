@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -22,7 +21,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/poc-gitops/web-platform/web-platform # {"$imagepolicy": "flux-system:web-platform:name"}
-      tag: m-ec700a7 # {"$imagepolicy": "flux-system:web-platform:tag"}
+      tag: m-ebde574-20250218225530 # {"$imagepolicy": "flux-system:web-platform:tag"}
     containerPort: 80
     ingress:
       enabled: true
