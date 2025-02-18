@@ -17,7 +17,7 @@ spec:
   imageRepositoryRef:
     name: web-platform
   filterTags:
-    pattern: '^m-[a-fA-F0-9]+-(?P<datetime>.*)'
+    pattern: '^m-[a-fA-F0-9]+-(?P<datetime>\d+)$'
     extract: '$datetime'
   policy:
     numerical:
