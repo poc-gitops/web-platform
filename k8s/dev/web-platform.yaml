@@ -22,7 +22,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/poc-gitops/web-platform/web-platform
-      tag: 8ebc536
+      tag: m-ec700a7
     containerPort: 80
     ingress:
       enabled: true
