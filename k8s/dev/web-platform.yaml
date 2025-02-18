@@ -26,7 +26,7 @@ spec:
     containerPort: 80
     ingress:
       enabled: true
-      className: "cloduflare-tunnel"
+      className: "cloudflare-tunnel"
       hosts:
         - host: web-platform-dev.mhcp001.uk
           paths:
