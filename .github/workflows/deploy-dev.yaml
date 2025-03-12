@@ -47,13 +47,23 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           platforms: linux/amd64,linux/arm64
 
+      - name: Create GitHub App Token
+        uses: actions/create-github-app-token@v1
+        id: github-app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
           event-type: new-image-available
           repository: ${{ github.repository_owner }}/argocd
+          token: ${{ steps.github-app-token.outputs.token }}
           client-payload: |
             {
-              "image": "ghcr.io/${{ github.repository }}/web-platform:${{ steps.meta.outputs.tags }}",
+              "tag": "${{ steps.meta.outputs.tags }}",
               "service": "web-platform"
             }
+
