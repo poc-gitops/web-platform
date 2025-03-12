@@ -55,7 +55,6 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           owner: poc-gitops
-          repositories: argocd
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
