@@ -65,5 +65,5 @@ jobs:
           client-payload: |
             {
               "service": "web-platform",
-              "tag": "${{ steps.meta.outputs.tags }}"
+              "tag": "${{ steps.meta.outputs.version }}"
             }
