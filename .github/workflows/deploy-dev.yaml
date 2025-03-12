@@ -54,6 +54,7 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
+          repository: argocd
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
