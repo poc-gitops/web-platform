@@ -19,26 +19,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create GitHub App Token
+      - name: Create GitHub App Token for repository dispatch
         uses: actions/create-github-app-token@v1
         id: github-app-token
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           repositories: argocd
-
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          event-type: new-image-available
-          repository: ${{ github.repository_owner }}/argocd
-          token: ${{ steps.github-app-token.outputs.token }}
-          client-payload: |
-            {
-              "tag": "test",
-              "service": "web-platform"
-            }
-
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -68,3 +55,15 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           platforms: linux/amd64,linux/arm64
+
+      - name: Trigger ArgoCD image update
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          event-type: update-image-dev
+          repository: ${{ github.repository_owner }}/argocd
+          token: ${{ steps.github-app-token.outputs.token }}
+          client-payload: |
+            {
+              "service": "web-platform",
+              "tag": "${{ steps.meta.outputs.tags }}"
+            }
